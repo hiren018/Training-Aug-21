@@ -1,36 +1,44 @@
-CREATE TABLE B_Employee (
-Employee_Id INT PRIMARY KEY,
-FirstName CHAR(10) NOT NULL,
-LastName CHAR(10) NOT NULL,
-Email CHAR(15) NOT NULL,
-MobileNo CHAR(10) NOT NULL,
-Salary INT NOT NULL,
-Comission INT NOT NULL CONSTRAINT Ucom UNIQUE
-)
+CREATE TABLE Employees(
+EmpID char(4) not null PRIMARY KEY,
+FirstName char(20) not null,
+LastName char(20) not null,
+Phone Numeric(10)not null,
+Email char(50) CONSTRAINT chk_mail CHECK(Email LIKE '%_@__%.__%')
+);
 
-CREATE TABLE Inventory(
-Item_id INT PRIMARY KEY,
-Item_Name VARCHAR(15),
-Item_qty INT
-)
 
-CREATE TABLE sales(
-srno INT PRIMARY KEy,
-EmployeeNo INT CONSTRAINT emp_fkForeig REFERENCES B_Employee(Employee_Id) on update NO ACTION,
-ItemNo INT CONSTRAINT item_fkForeig REFERENCES Inventory(Item_id) on update NO ACTION,
-SaleQty INT
-)
- 
-INSERT INTO B_Employee VALUES ('Hiren','Sanghani','hiren@gmail.com','123456789',1234,15)
-INSERT INTO B_Employee VALUES ('Mayank','shrma','man@gmail.com','9879441799',6525,45)
-INSERT INTO B_Employee VALUES ('shyam','patel','turth@gmail.com','5686220447',4578,36)
-INSERT INTO Inventory VALUES ('Bmw',100)
-INSERT INTO Inventory VALUES ('Audi',50)
-INSERT INTO Inventory VALUES ('Alto',30)
-INSERT INTO sales VALUES (1,1,20)
-INSERT INTO sales VALUES (2,2,30)
-INSERT INTO sales VALUES (2,3,10)
+CREATE TABLE Cars(
+CarId char(4) not null PRIMARY KEY,
+CarName char(15) not null,
+ModelNo char(10) not null,
+CarPrice INTEGER not null
+);
 
-SELECT * from B_Employee
-SELECT * from Inventory
-SELECT * from sales
+
+CREATE TABLE Sales(
+SalesId int not null PRIMARY KEY,
+EmpID char(4) CONSTRAINT emp_fk REFERENCES Employees(EmpID) ON UPDATE CASCADE ON DELETE CASCADE,
+CarId Char(4) CONSTRAINT car_fk REFERENCES Cars(CarId) ON UPDATE CASCADE ON DELETE CASCADE,
+SaleQty int,
+SaleComission REAL
+);
+
+INSERT INTO Employees VALUES 
+('E1','Hiren','Sanghani','1234567890','hiren@123gmail.com'),
+('E2','Yash','Shah','0987654321','Yash@gmail.com'),
+('E3','Jay','Patel','0147852369','Jay@123gmail.com');
+
+INSERT INTO Cars VALUES 
+('C1','Kia','M1',1000000),
+('C2','Creta','M2',1400000),
+('C3','Baleno','M3',600000);
+
+INSERT INTO Sales (SalesId, EmpID,CarId, SaleQty) 
+VALUES 
+(1,'E1','C1',2),
+(2,'E2','C2',3),
+(3,'E3','C3',1);
+
+SELECT * FROM Sales;
+
+UPDATE Sales SET SaleComission = SaleQty * 5000;
