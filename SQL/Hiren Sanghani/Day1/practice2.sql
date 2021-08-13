@@ -3,8 +3,8 @@ CREATE TABLE JobHistory
 EmployeeId int not null PRIMARY KEY,
 StartDate date not null,
 End_Date date CONSTRAINT cheackDate CHECK (End_Date LIKE '--/--/----'),
-Job_Id varchar(10) not null,
-Department_Id varchar(8) not null,
+Job_Id char(10) not null,
+Department_Id char(8) not null,
 );
 
 
