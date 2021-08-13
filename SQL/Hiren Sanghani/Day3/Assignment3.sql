@@ -13,7 +13,7 @@ SELECT substr(PhoneNumber,-4) FROM Employees;
 
 SELECT replace(PhoneNumber,124,999) AS PhoneNumber FROM Employees;
 
-SELECT ROUND((JULIANDAY(date()) - JULIANDAY('2000-12-15')) / 365) AS AGE;
+SELECT ROUND((strftime(date()) - strftime('2000-12-15'))) AS AGE;
 
 SELECT DISTINCT HireDate FROM Employees WHERE 
 CAST (strftime('%w',HireDate) AS INTEGER) == 1;
