@@ -2,7 +2,6 @@ SELECT FirstName, length(FirstName) "length" FROM Employees WHERE
 FirstName like 'A%' OR FirstName like 'J%' OR FirstName like 'M%'
 ORDER BY FirstName ASC;
 
-
 SELECT EmployeeID, FirstName, LastName, HireDate FROM Employees
  WHERE CAST (strftime('%m', HireDate)AS INTEGER) = 7 OR 
 CAST (strftime('%d',HireDate) AS INTEGER) == 7;
