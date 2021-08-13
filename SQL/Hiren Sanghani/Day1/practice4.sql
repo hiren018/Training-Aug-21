@@ -18,5 +18,5 @@ CREATE TABLE Employees (
 	DeptId	Char(10),
 	PRIMARY KEY(EmpId)
     CONSTRAINT fk_jobs FOREIGN KEY (JobId) REFERENCES jobs(JobId),
-    CONSTRAINT fk_dept FOREIGN KEY (DepartmentId) REFERENCES Departments(DepartmentId),
+    CONSTRAINT fk_dept FOREIGN KEY (DeptId) REFERENCES Department(DeptId),
 )
