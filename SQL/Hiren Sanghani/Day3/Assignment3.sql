@@ -25,8 +25,7 @@ SELECT strftime('%H:%M %d/%m/%Y', 'now') as DateAndTime;
 SELECT FirstName, LastName, HireDate FROM Employees WHERE 
 CAST (strftime('%m', HireDate)AS INTEGER) = 6;
 
-SELECT FirstName, HireDate , ROUND((JULIANDAY('now')-JULIANDAY(HireDate)) / 365) 
+SELECT FirstName, HireDate , ROUND((strftime(date()) - strftime(HireDate)))
 AS Experience FROM Employees;
-
 SELECT FirstName FROM Employees WHERE CAST (strftime('%Y','1987') AS INTEGER);
 
