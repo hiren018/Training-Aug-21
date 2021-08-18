@@ -22,4 +22,4 @@ SELECT * FROM Employees ORDER BY FirstName DESC;
 
 SELECT EmployeeID,FirstName,LastName,Salary FROM Employees ORDER BY Salary ASC;
 
-SELECT TOP 2 Salary FROM Employees;
+SELECT  Salary FROM Employees LIMIT 2;
